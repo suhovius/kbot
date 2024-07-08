@@ -6,6 +6,7 @@ package cmd
 import (
 	"fmt"
 	"log"
+	"math/rand"
 	"os"
 	"time"
 
@@ -20,9 +21,9 @@ var (
 
 // kbotCmd represents the kbot command
 var kbotCmd = &cobra.Command{
-	Use:   "kbot",
+	Use:     "kbot",
 	Aliases: []string{"start"},
-	Short: "A brief description of your command",
+	Short:   "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
@@ -50,7 +51,14 @@ to quickly create a Cobra application.`,
 			switch payload {
 			case "hello":
 				err = m.Send(fmt.Sprintf("Hello I'm Kbot %s!", appVersion))
-				
+			case "rand":
+				// Create and seed the generator.
+				// Typically a non-fixed seed should be used, such as time.Now().UnixNano().
+				// Using a fixed seed will produce the same output on every run.
+				r := rand.New(rand.NewSource(time.Now().UnixNano()))
+				randomNumber := r.Intn(10)
+				err = m.Send(fmt.Sprintf("Here is some random number %d!", randomNumber))
+
 			}
 
 			return err
