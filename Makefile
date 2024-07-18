@@ -13,7 +13,7 @@ lint:
 test:
 	go test -v
 
-build: format get
+build: format
 	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${shell dpkg --print-architecture} go build -v -o kbot -ldflags "-X="github.com/suhovius/kbot/cmd.appVersion=${VERSION}
 
 clean:
