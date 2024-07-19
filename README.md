@@ -13,6 +13,16 @@ In final response message there will be API token, click at this message once to
 * start Kbot with `./kbot start` command
 * Open your telegram bot link that was obtained at the BotFather and start typing some bot commands
 
+### Build Generation
+* Each make and build command has such environment variables `TARGETOS`, `TARGETARCH` they define target operation system and processor architecture. See variables defaults at `Makefile`
+* `TARGETOS=darwin TARGETARCH=arm64 make build` - this example command will prepare application binary file
+* `make image` - create docker image
+* `make push` - push docker image into registry
+* `make clean` - remove binary and docker image
+
+### Run application via Docker
+* `docker run registry.digitalocean.com/suhovius/kbot:v1.0.5-07d3380-amd64`
+
 ### Supported Commands
 
 `/start hello` - see bot version. Output example: `'Hello I'm Kbot 1.0.2!'`
