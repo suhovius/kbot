@@ -14,7 +14,8 @@ In final response message there will be API token, click at this message once to
 * Open your telegram bot link that was obtained at the BotFather and start typing some bot commands
 
 ### Build Generation
-* Each make and build command has such environment variables `TARGETOS`, `TARGETARCH` they define target operation system and processor architecture. See variables defaults at `Makefile`
+* Each make and build command has such environment variables `TARGETOS`, `TARGETARCH` they define target operation system and processor architecture. See variables defaults at `Makefile`.
+* See supported os and architecture values here [Golang Environment](https://go.dev/doc/install/source#environment)
 * `TARGETOS=darwin TARGETARCH=arm64 make build` - this example command will prepare application binary file
 * `make image` - create docker image
 * `make push` - push docker image into registry
