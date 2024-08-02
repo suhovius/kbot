@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: suhovius
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.0.5-310e9b7"
+  tag: "v1.0.5-3001369"
   arch: amd64
 
 secret:
