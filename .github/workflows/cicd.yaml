@@ -27,7 +27,7 @@ jobs:
           cmd: echo "TARGETARCH=$(yq '.image.arch' helm/values.yaml)" >> $GITHUB_ENV
 
       - name: Run test
-        run: TARGETOS=$TARGETOS TARGETARCH=$TARGETARC make test 
+        run: TARGETOS=strenv(TARGETOS) TARGETARCH=strenv(TARGETARC) make test 
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -40,7 +40,7 @@ jobs:
         env:
           APP: "kbot"
           REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
-        run: TARGETOS=$TARGETOS TARGETARCH=$TARGETARC make image push
+        run: TARGETOS=strenv(TARGETOS) TARGETARCH=strenv(TARGETARC) make image push
 
   cd:
     name: CD
