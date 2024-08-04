@@ -1,5 +1,5 @@
 VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)
-IMAGE_TAG=${REGISTRY}/${REPOSITORY}:${VERSION}-${TARGETARCH}
+IMAGE_TAG=${REGISTRY}/${REPOSITORY}:${VERSION}-${TARGETOS}-${TARGETARCH}
 
 format:
 	gofmt -s -w ./
