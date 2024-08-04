@@ -16,15 +16,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set TARGETOS env variable
+      - name: Set ENV variables from helm chart values
         uses: mikefarah/yq@master
         with:
-          cmd: echo "TARGETOS=$(yq '.image.os' helm/values.yaml)" >> $GITHUB_ENV
-
-      - name: Set TARGETARCH env variable
-        uses: mikefarah/yq@master
-        with:
-          cmd: echo "TARGETARCH=$(yq '.image.arch' helm/values.yaml)" >> $GITHUB_ENV
+          cmd:  |
+            echo "TARGETOS=$(yq '.image.os' helm/values.yaml)" >> $GITHUB_ENV
+            echo "TARGETARCH=$(yq '.image.arch' helm/values.yaml)" >> $GITHUB_ENV
+            echo "REGISTRY=$(yq '.image.registry' helm/values.yaml)" >> $GITHUB_ENV
+            echo "REPOSITORY=$(yq '.image.repository' helm/values.yaml)" >> $GITHUB_ENV
 
       - name: Run test
         run: "TARGETOS=${{ env.TARGETOS }} TARGETARCH=${{ env.TARGETARCH }} make test"
@@ -37,9 +36,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build&Push
-        env:
-          APP: "kbot"
-          REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
         run: "TARGETOS=${{ env.TARGETOS }} TARGETARCH=${{ env.TARGETARCH }} make image push"
 
   cd:

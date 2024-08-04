@@ -1,7 +1,5 @@
-APP=$(shell basename $(shell git remote get-url origin) .git)
-REGISTRY=suhovius
 VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)
-IMAGE_TAG=${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
+IMAGE_TAG=${REGISTRY}/${REPOSITORY}:${VERSION}-${TARGETARCH}
 
 format:
 	gofmt -s -w ./
