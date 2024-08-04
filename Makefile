@@ -1,8 +1,6 @@
 APP=$(shell basename $(shell git remote get-url origin) .git)
 REGISTRY=suhovius
 VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)
-TARGETOS=linux
-TARGETARCH=amd64
 IMAGE_TAG=${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 
 format:
