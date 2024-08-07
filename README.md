@@ -14,7 +14,7 @@ In final response message there will be API token, click at this message once to
 * Open your telegram bot link that was obtained at the BotFather and start typing some bot commands
 
 ### Build Generation
-* Each make and build command has such environment variables `TARGETOS`, `TARGETARCH` they define target operation system and processor architecture. See variables defaults at `Makefile`.
+* Each make and build command has such environment variables `TARGETOS`, `TARGETARCH` they define target operation system and processor architecture. See variables logic details at `Makefile`.
 * See supported os and architecture values here [Golang Environment](https://go.dev/doc/install/source#environment)
 * `TARGETOS=darwin TARGETARCH=arm64 make build` - this example command will prepare application binary file
 * `make image` - create docker image
@@ -22,10 +22,14 @@ In final response message there will be API token, click at this message once to
 * `make clean` - remove binary and docker image
 
 ### Run application via Docker
-* `docker run registry.digitalocean.com/suhovius/kbot:v1.0.5-07d3380-amd64`
+* `docker run suhovius/kbot:v1.0.9-3019ec6-darwin-arm64`
 
 ### Supported Commands
 
 `/start hello` - see bot version. Output example: `'Hello I'm Kbot 1.0.2!'`
 
 `/start rand` - generate random number. Output example: `'Here is some random number 3!'`
+
+### TODO:
+* TODO: Add CI/CD schema with Github Actions, Jenkins, Gilab CI and ArgoCD/Helm
+* TODO: Update Build generation with proper commands
