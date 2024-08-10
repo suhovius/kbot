@@ -1,7 +1,7 @@
 default:
   image: golang:latest
 
-.docker_image_config
+.docker_image_config:
   image: docker:stable
   services:
     - docker:dind
