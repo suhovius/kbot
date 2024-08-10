@@ -5,6 +5,8 @@ default:
   image: docker:stable
   services:
     - docker:dind
+  before_script:
+    - apk add make
 
 stages:
   - test
