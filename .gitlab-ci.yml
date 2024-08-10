@@ -1,0 +1,52 @@
+image: golang:latest
+
+stages:
+  - test
+  - build
+  - image
+  - push
+
+variables:
+  REPO: 'https://github.com/suhovius/kbot'
+  BRANCH: 'main'
+  SCHEME: 'https://'
+  REGISTRY: 'docker.io'
+  REPOSITORY: 'suhovius/kbot'
+  TARGETOS:
+    value: 'linux'
+    options:
+      - 'linux'
+      - 'darwin'
+      - 'windows'
+    description: 'Pick OS'
+  TARGETARCH:
+    value: 'amd64'
+    options:
+      - 'amd64'
+      - 'arm64'
+    description: 'Pick Architecture'
+
+test:
+  stage: test
+  script:
+    - echo 'TEST EXECUTION STARTED'
+    - make test
+
+build:
+  stage: build
+  script:
+    - echo 'BUILD EXECUTION STARTED'
+    - make build
+
+make_image:
+  stage: image
+  script:
+    - echo 'BUILD IMAGE EXECUTION STARTED'
+    - make image
+
+push:
+  stage: push
+  script:
+    - echo 'PUSH IMAGE EXECUTION STARTED'
+    - echo "$CI_REGISTRY_PASSWORD" | docker login $REGISTRY -u $CI_REGISTRY_USER --password-stdin
+    - make push
