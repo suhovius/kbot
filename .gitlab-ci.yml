@@ -7,6 +7,7 @@ default:
     - docker:dind
   before_script:
     - apk add make
+    - apk add git
 
 stages:
   - test
