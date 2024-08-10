@@ -53,10 +53,11 @@ build_image:
   script:
     - echo 'BUILD IMAGE EXECUTION STARTED'
     - make image
-    - docker save $IMAGE_TAG > ${IMAGE_TAG}.tar
+    - mkdir images
+    - docker save $IMAGE_TAG > images/${IMAGE_TAG}.tar
   artifacts:
     paths:
-      - ${IMAGE_TAG}.tar
+      - images
 
 push:
   extends:
@@ -64,7 +65,7 @@ push:
   stage: push
   script:
     - echo 'PUSH IMAGE EXECUTION STARTED'
-    - docker load < ${IMAGE_TAG}.tar
+    - docker load -i images/${IMAGE_TAG}.tar
     - echo "$CI_REGISTRY_PASSWORD" | docker login $REGISTRY -u $CI_REGISTRY_USER --password-stdin
     - make push
   dependencies:
