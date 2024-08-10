@@ -8,6 +8,8 @@ default:
   before_script:
     - apk add make
     - apk add git
+    - export VERSION=$(git describe --tags --abbrev=0)-$(git rev-parse --short HEAD)
+    - export IMAGE_TAG=${REGISTRY}/${REPOSITORY}:${VERSION}-${TARGETOS}-${TARGETARCH}
 
 stages:
   - test
@@ -16,9 +18,6 @@ stages:
   - push
 
 variables:
-  REPO: 'https://github.com/suhovius/kbot'
-  BRANCH: 'main'
-  SCHEME: 'https://'
   REGISTRY: 'docker.io'
   REPOSITORY: 'suhovius/kbot'
   TARGETOS:
@@ -47,13 +46,17 @@ build:
     - echo 'BUILD EXECUTION STARTED'
     - make build
 
-make_image:
+build_image:
   extends:
     - .docker_image_config
   stage: image
   script:
     - echo 'BUILD IMAGE EXECUTION STARTED'
     - make image
+    - docker save $IMAGE_TAG > ${IMAGE_TAG}.tar
+  artifacts:
+    paths:
+      - ${IMAGE_TAG}.tar
 
 push:
   extends:
@@ -61,5 +64,8 @@ push:
   stage: push
   script:
     - echo 'PUSH IMAGE EXECUTION STARTED'
+    - docker load < ${IMAGE_TAG}.tar
     - echo "$CI_REGISTRY_PASSWORD" | docker login $REGISTRY -u $CI_REGISTRY_USER --password-stdin
     - make push
+  dependencies:
+    - build_image
