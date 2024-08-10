@@ -1,4 +1,10 @@
-image: golang:latest
+default:
+  image: golang:latest
+
+.docker_image_config
+  image: docker:stable
+  services:
+    - docker:dind
 
 stages:
   - test
@@ -39,12 +45,16 @@ build:
     - make build
 
 make_image:
+  extends:
+    - .docker_image_config
   stage: image
   script:
     - echo 'BUILD IMAGE EXECUTION STARTED'
     - make image
 
 push:
+  extends:
+    - .docker_image_config
   stage: push
   script:
     - echo 'PUSH IMAGE EXECUTION STARTED'
