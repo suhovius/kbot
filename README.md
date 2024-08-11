@@ -1,6 +1,32 @@
 # kbot
 DevOps Course test application
 
+### Github Actions GitOps Workflow Scheme
+
+![GithubActions GitOps Workflow Scheme](docs/GithubActions_GitOps_Workflow_Scheme.png)
+
+This repository contains CI/CD pipeline definitions for [Github Actions](.github/workflows/cicd.yaml), [Jenkins](pipeline/jenkins.groovy) and [Gitlab CI](.gitlab-ci.yml). Note that Jenkins and Gitlab pipeline examples does not contain CD pipeline, so they do not update Helm charts repository code.
+
+### Bitbucket & Jenkins to Gitlab & Gitlab CI Migration
+
+Pros and Cons of such migration are described here: [Detailed Notes](docs/bitbucket_jenkins_to_gitlab_ci_migration.md) and [Short Notes](docs/migration_comparison_notes.md)
+
+### Gitlab CI Migration Conclusion
+Jenkins is highly configurable, has huge set of plugins for any need of the CI pipeline script. Main problems are configuration all neeeded plugins and keeping them up to date with their working versions. Also Jenkins needs to be hosted somewhere and as it requires Java. Accoring to local testing, it needs quite enough hardware resources to run it's ecosystem and pipeline jobs fast. It seems to be quite a hassle to keep it running and up to date.
+
+Gitlab ecosystem, along with git repository hosting and container storage serivce, also provides cloud and self hosted solutions for Gitlab and CI. Gitlab CI can be triggered on some events, for example push at repository, manual CI job start execution is also possible. Even free version is enough to cover needs of the provided Jenkinsfile. Gitlab CI has good documentation and big community at Stack Overflow, Gitlab Forum and other sites and blogs.
+
+Gitlab CI pipeline is described in the a simple YAML file. Syntax is very easy to write and refactor, also it reads almost like a human language.
+
+So, migration from Jenkins to Gitlab CI is very recommended.
+
+##### Used Links for Migration
+* [Tutorial: Create a complex pipeline](https://docs.gitlab.com/ee/ci/quick_start/tutorial.html)
+* [Configure a list of selectable prefilled variable values](https://docs.gitlab.com/ee/ci/pipelines/index.html#configure-a-list-of-selectable-prefilled-variable-values)
+* [Golang CI Example](https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Go.gitlab-ci.yml)
+* [Build Golang Docker images with GitLab CI Pipelines](https://akyriako.medium.com/build-golang-docker-images-with-gitlab-ci-pipelines-2117f8505350)
+* [Passing Docker Image Between Build and Test Stage in GitLab Runner](https://forum.gitlab.com/t/passing-docker-image-between-build-and-test-stage-in-gitlab-runner/2444/7)
+
 ### Link to telegram bot
 [kbot](https://t.me/test_284709_bot)
 
