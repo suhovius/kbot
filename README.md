@@ -20,7 +20,8 @@ Gitlab CI pipeline is described in the a simple YAML file. Syntax is very easy t
 
 So, migration from Jenkins to Gitlab CI is very recommended.
 
-##### Used Links for Migration
+##### Used learning resources for Jenkins to Gitlab CI migration task
+* [Tutorial: Create and run your first GitLab CI/CD pipeline](https://docs.gitlab.com/ee/ci/quick_start/)
 * [Tutorial: Create a complex pipeline](https://docs.gitlab.com/ee/ci/quick_start/tutorial.html)
 * [Configure a list of selectable prefilled variable values](https://docs.gitlab.com/ee/ci/pipelines/index.html#configure-a-list-of-selectable-prefilled-variable-values)
 * [Golang CI Example](https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Go.gitlab-ci.yml)
