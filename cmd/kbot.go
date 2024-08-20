@@ -57,7 +57,7 @@ to quickly create a Cobra application.`,
 				// Using a fixed seed will produce the same output on every run.
 				r := rand.New(rand.NewSource(time.Now().UnixNano()))
 				randomNumber := r.Intn(10)
-				err = m.Send(fmt.Sprintf("Here is some random decimal number %d!", randomNumber))
+				err = m.Send(fmt.Sprintf("Here is some random decimal test number %d!", randomNumber))
 
 			}
 
