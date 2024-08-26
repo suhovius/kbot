@@ -5,9 +5,14 @@ DevOps Course test application
 
 #### Setup
 
+First make ensure that `.githooks` files are executable:
+
+`find .githooks -type f -exec chmod +x {} \;`
+
 Read more here [https://www.viget.com/articles/two-ways-to-share-git-hooks-with-your-team/](https://www.viget.com/articles/two-ways-to-share-git-hooks-with-your-team/)
 
-Choose Your Sharing Strategy
+Choose githooks installation method
+
 If you're using Git version 2.9 or greater, assign the `core.hooksPath` configuration variable to managed hooks directory:
 
 `$ git config core.hooksPath .githooks`
