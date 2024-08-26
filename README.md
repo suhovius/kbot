@@ -1,6 +1,37 @@
 # kbot
 DevOps Course test application
 
+### Git Hooks
+
+#### Setup
+
+Read more here [https://www.viget.com/articles/two-ways-to-share-git-hooks-with-your-team/](https://www.viget.com/articles/two-ways-to-share-git-hooks-with-your-team/)
+
+Choose Your Sharing Strategy
+If you're using Git version 2.9 or greater, assign the `core.hooksPath` configuration variable to managed hooks directory:
+
+`$ git config core.hooksPath .githooks`
+
+If you're using an earlier version, you need to ensure that your managed hooks make it into the `.git/hooks` directory. Symlink `.githooks` to `.git/hooks`, just make sure to clear the old ones out first:
+
+`$ find .git/hooks -type l -exec rm {} \; && find .githooks -type f -exec ln -sf ../../{} .git/hooks/ \;`
+
+#### Enable/Disable
+
+Use git config option `hooks.gitleaks` to switch on/off gitleaks check 
+
+Enable gitleaks check
+
+`git config --local --bool hooks.gitleaks true`
+
+Disable gitleaks check
+
+`git config --local --bool hooks.gitleaks false`
+
+Or unset this config parameter completely if you do not need it anymore
+
+`git config --unset-all --bool hooks.gitleaks`
+
 ### Github Actions GitOps Workflow Scheme
 
 ![GithubActions GitOps Workflow Scheme](docs/GithubActions_GitOps_Workflow_Scheme.png)
