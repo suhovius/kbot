@@ -30,7 +30,7 @@ runGitleaksCheck() {
 
 gitleaksCheck() {
   local gitleaks_enabled=$1
-  if [ -z $gitleaks_enabled ] && [ $gitleaks_enabled == "true" ]; then
+  if [ ! -z $gitleaks_enabled ] && [ $gitleaks_enabled == "true" ]; then
     ensureGitleaksInstalled
     runGitleaksCheck
   else
