@@ -1,6 +1,10 @@
 # kbot
 DevOps Course test application
 
+### Git Hooks
+
+In order to install and configure [gitleaks](https://github.com/gitleaks/gitleaks) git hooks for this repository look at this repository [gitleaks-tools](https://github.com/suhovius/gitleaks-tools)
+
 ### Github Actions GitOps Workflow Scheme
 
 ![GithubActions GitOps Workflow Scheme](docs/GithubActions_GitOps_Workflow_Scheme.png)
