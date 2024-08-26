@@ -7,7 +7,7 @@ image:
   registry: "ghcr.io"
   repository: suhovius/kbot
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.1.0-8d6c4e9"
+  tag: "v1.1.0-e744fce"
   os: linux
   arch: amd64
 secret:
