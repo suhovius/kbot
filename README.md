@@ -62,5 +62,4 @@ In final response message there will be API token, click at this message once to
 `/start rand` - generate random number. Output example: `'Here is some random number 3!'`
 
 ### TODO:
-* TODO: Add CI/CD schema with Github Actions, Jenkins, Gilab CI and ArgoCD/Helm
-* TODO: Update Build generation with proper commands
+* TBD
